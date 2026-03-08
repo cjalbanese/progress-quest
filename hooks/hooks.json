@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PLUGIN_ROOT/hooks-handlers/progress-quest.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
