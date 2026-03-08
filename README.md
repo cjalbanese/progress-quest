@@ -2,7 +2,7 @@
 
 An RPG overlay for [Claude Code](https://claude.ai/code). Earn XP, level up, unlock achievements, collect loot, and encounter random events while you work.
 
-Every tool call Claude makes — reads, writes, edits, bash commands — earns you XP. Level up from **Script Kiddie** to **God Mode: Retired to Substack**. Unlock achievements. Collect loot drops. Get roasted by random events. Fight bosses. Prestige and do it all again with new titles (up to 5 unique prestige tiers).
+Every tool call Claude makes — reads, writes, edits, bash commands — earns you XP. Level up from **Just a Baby** to **God Mode: Retired to Substack**. Unlock achievements. Collect loot drops. Get roasted by random events. Fight bosses. Prestige and do it all again with new titles (up to 5 unique prestige tiers).
 
 ## Install
 
@@ -55,7 +55,7 @@ Nice shoes by the way.
 
 | Level | Title | XP |
 |-------|-------|-----|
-| 1 | Script Kiddie | 0 |
+| 1 | Just a Baby | 0 |
 | 2 | Stack Overflower | 100 |
 | 3 | Copy-Paste Artisan | 300 |
 | 4 | Senior Junior Dev | 600 |

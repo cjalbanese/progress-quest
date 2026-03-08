@@ -99,7 +99,7 @@ level_title() {
 
   if [ "$prest" -eq 0 ]; then
     case $lvl in
-      1)  echo "Script Kiddie" ;;
+      1)  echo "Just a Baby" ;;
       2)  echo "Stack Overflower" ;;
       3)  echo "Copy-Paste Artisan" ;;
       4)  echo "Senior Junior Dev" ;;
