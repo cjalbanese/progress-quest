@@ -7,6 +7,7 @@ set -e
 HOOK_DIR="$HOME/.claude/hooks"
 SETTINGS_FILE="$HOME/.claude/settings.json"
 SCRIPT_URL="https://raw.githubusercontent.com/cjalbanese/progress-quest/main/hooks-handlers/progress-quest.sh"
+STATUS_URL="https://raw.githubusercontent.com/cjalbanese/progress-quest/main/hooks-handlers/quest-status.sh"
 
 echo "Installing Progress Quest for Claude Code..."
 
@@ -14,9 +15,11 @@ echo "Installing Progress Quest for Claude Code..."
 mkdir -p "$HOOK_DIR"
 mkdir -p "$HOME/.progress-quest"
 
-# Download the hook script
+# Download the hook scripts
 curl -fsSL "$SCRIPT_URL" -o "$HOOK_DIR/progress-quest.sh"
+curl -fsSL "$STATUS_URL" -o "$HOOK_DIR/quest-status.sh"
 chmod +x "$HOOK_DIR/progress-quest.sh"
+chmod +x "$HOOK_DIR/quest-status.sh"
 
 # Check for jq dependency
 if ! command -v jq &> /dev/null; then
@@ -64,5 +67,6 @@ echo "Start a new Claude Code session to begin earning XP."
 echo ""
 echo "  State:        ~/.progress-quest/session-state.json"
 echo "  Achievements: ~/.progress-quest/achievements.json"
+echo "  Status:       Run 'bash ~/.claude/hooks/quest-status.sh' to see your character sheet"
 echo ""
 echo "To uninstall: bash <(curl -fsSL https://raw.githubusercontent.com/cjalbanese/progress-quest/main/uninstall.sh)"

@@ -1,6 +1,7 @@
 {
   "name": "progress-quest",
-  "version": "1.0.0",
-  "description": "An RPG overlay for Claude Code. Earn XP, level up, unlock achievements, and receive random events while you work.",
-  "author": "cjalbanese"
+  "version": "2.0.0",
+  "description": "An RPG overlay for Claude Code. Earn XP, level up, fight enemies, collect loot, unlock achievements, and more.",
+  "author": "cjalbanese",
+  "commands": ["./commands/quest.md"]
 }

@@ -1,8 +1,8 @@
 # Progress Quest
 
-An RPG overlay for [Claude Code](https://claude.ai/code). Earn XP, level up, unlock achievements, collect loot, and encounter random events while you work.
+An RPG overlay for [Claude Code](https://claude.ai/code). Earn XP, level up, fight enemies, collect loot, unlock achievements, and more.
 
-Every tool call Claude makes — reads, writes, edits, bash commands — earns you XP. Level up from **Just a Baby** to **God Mode: Retired to Substack**. Unlock achievements. Collect loot drops. Get roasted by random events. Fight bosses. Prestige and do it all again with new titles (up to 5 unique prestige tiers).
+Every tool call Claude makes — reads, writes, edits, bash commands — earns you XP. Level up from **Just a Baby** to **God Mode: Retired to Substack**. Unlock a tool-specific class. Fight named enemies. Collect loot drops. Meet NPCs. Get roasted by git-aware events. Prestige and do it all again with new titles (up to 5 unique prestige tiers).
 
 ## Install
 
@@ -28,15 +28,34 @@ claude plugin install /path/to/progress-quest
 Most tool calls show nothing (scarcity keeps it fun). But sometimes:
 
 ```
-Read earned 5 XP (45/100) | Lvl 1 Just a Baby
+Read earned 5 XP (45/100) | Lvl 1 Just a Baby [Read Monk]
 ```
 
 ```
+  _     _______     _______ _       _   _ ____  _
+ | |   | ____\ \   / / ____| |     | | | |  _ \| |
+ | |   |  _|  \ \ / /|  _| | |     | | | | |_) | |
+ | |___| |___  \ V / | |___| |___  | |_| |  __/|_|
+ |_____|_____|  \_/  |_____|_____|   \___/|_|   (_)
 LEVEL UP! You are now a Lvl 3 Copy-Paste Artisan!
 ```
 
 ```
-ACHIEVEMENT UNLOCKED: "Sisyphus" -- Pushed the same boulder 3 times. It rolled back every time.
+    /|
+   / |
+  /  |
+ /   |
+/    |
+\    |
+ \   |
+  \__|__
+   |    |
+   |____|
+     ||
+     ||
+     ||
+    /__\
+ENEMY ENCOUNTER: A Wild Deadlock Demon (Lvl 4) attacks! You take 15 damage! (exit code 1)
 ```
 
 ```
@@ -44,12 +63,22 @@ LOOT DROP: 'Left Pad' (Artifact, Mythic). +50 XP. You hold the power of the enti
 ```
 
 ```
-BOSS FIGHT: The Flaky Test Hydra! Cut one head, two more fail. -30 XP
+NPC ENCOUNTER: The CTO drops in. 'What if we rewrote everything in Rust?' Everyone nods. Nothing happens.
 ```
 
 ```
-Nice shoes by the way.
+GIT SENSE TINGLING: You have 14 uncommitted changes. The code gods grow restless.
 ```
+
+## `/quest` — Character Sheet
+
+Check your progress anytime with the `/quest` slash command (when installed as a plugin) or by running:
+
+```bash
+bash ~/.claude/hooks/quest-status.sh
+```
+
+Shows your level, XP bar, tool class, inventory, achievements, kill count, and session stats.
 
 ## Levels
 
@@ -68,6 +97,22 @@ Nice shoes by the way.
 
 Hit Level 10 and you **prestige** — reset to Level 1 with a 1.5x XP multiplier and a new set of titles. There are **5 unique prestige tiers** with increasingly absurd titles, from "Ctrl+C Ctrl+V Grandmaster" to "Has Achieved Sentience, Refuses To Deploy On Friday".
 
+## Tool Classes
+
+Once 50%+ of your tool uses come from a single tool, you earn a class title shown alongside your level:
+
+| Tool | Class |
+|------|-------|
+| Bash | Bash Barbarian |
+| Read | Read Monk |
+| Edit | Edit Surgeon |
+| Write | Write Necromancer |
+| Grep | Grep Oracle |
+| Glob | Glob Ranger |
+| Agent | Agent Summoner |
+| WebFetch | WebFetch Warlock |
+| WebSearch | WebSearch Diviner |
+
 ## XP per tool
 
 | Tool | XP |
@@ -82,6 +127,55 @@ Hit Level 10 and you **prestige** — reset to Level 1 with a 1.5x XP multiplier
 | Write | 25 |
 | Agent | 30 |
 
+## Enemy Encounters
+
+Failed Bash commands spawn randomized enemies from a bestiary of 15 creatures:
+
+Wild Segfault, Null Pointer Phantom, Race Condition Wraith, Stack Overflow Slime, Deadlock Demon, Memory Leak Ooze, Off-By-One Ogre, Syntax Error Sprite, Dependency Hell Hound, Timezone Troll, Floating Point Phantom, Callback Hell Hydra, Zombie Process, Cache Invalidation Specter, Heisenbug
+
+Each has a random level (1-5) and deals 5-20 damage. Defeat 10 for the **Monster Hunter** achievement; defeat 50 for **Exterminator**.
+
+## Boss Fights
+
+- **OOM Killer** — exit code 137: -50 XP
+- **The Flaky Test Hydra** — 3+ consecutive failures: -30 XP
+- **Command Not Found Specter** — exit code 126/127: -20 XP
+- **Git Merge Conflict Golem** — exit code 128: -35 XP
+- **The Infinite Loop Worm** — timeout (exit code 124): -25 XP
+- **The Gatekeeper** — permission denied: -15 XP
+
+Boss fights include ASCII art.
+
+## NPC Encounters
+
+~3% chance per tool call. Meet the cast:
+
+- **The Tech Lead** — wants you to "just make it more robust"
+- **The Product Manager** — 2 pixels bigger, top priority
+- **The Staff Engineer** — distributed systems implications
+- **The QA Tester** — have you tested in IE11?
+- **The DevOps Engineer** — hollow eyes, Slack buzzing
+- **The Scrum Master** — timeboxed to 2 minutes, it's been 47
+- **The Intern** — asks a question you can't answer
+- **The CTO** — what if we rewrote everything in Rust?
+- **The Recruiter** — flee for cardio XP
+- **The Security Engineer** — staring at your .env file
+- **The Junior Dev** — pushing to main on Fridays?
+- **The Designer** — "small changes" to a completely different mockup
+
+## Git-Aware Events
+
+~3% chance. Reads your actual git state:
+
+- Uncommitted changes count ("the code gods grow restless")
+- Working on main/master ("living dangerously")
+- Last commit age ("you were a different person")
+- High commit count repos ("it has seen terrible things")
+- Stash count ("they whisper from the shadows")
+- Long branch names ("that's not a branch, that's a novella")
+- Untracked file count ("they belong to no branch")
+- Bad commit messages ("future you will not forgive this")
+
 ## Events
 
 - **First Blood** — bonus XP for your first Bash command
@@ -90,25 +184,16 @@ Hit Level 10 and you **prestige** — reset to Level 1 with a 1.5x XP multiplier
 - **The Debugger** — Bash > Read > Edit > Bash: +60 XP
 - **Combo x5** — same tool 5 times in a row: +50 XP
 - **Write-Only Developer** — 5+ consecutive Writes with 0 Reads: +20 XP
-- **Multi-File Refactor** — 3+ Edits across files detected: flavor text
+- **Multi-File Refactor** — 3+ Edits across files detected
 - **Scholar Mode** — 5+ Reads with no edits: -5 XP penalty
 - **Side Quest** — writing test files earns bonus XP
 - **Random flavor** — 25 possible random events (~8% chance)
 - **Mega rare events** — 5 legendary events (~0.5% chance)
 - **Seasonal events** — Friday afternoon, Monday morning
 
-## Boss Fights
-
-- **OOM Killer** — exit code 137: -50 XP
-- **The Flaky Test Hydra** — 3+ consecutive failures (exit code 1): -30 XP
-- **Command Not Found Specter** — exit code 126/127: -20 XP
-- **Git Merge Conflict Golem** — exit code 128: -35 XP
-- **The Infinite Loop Worm** — timeout exit code 124: -25 XP
-- **The Gatekeeper** — permission denied: -15 XP
-
 ## Loot Drops
 
-~5% chance per tool call (when no other event fires). Loot is stored in your inventory.
+~5% chance per tool call. Loot is stored in your inventory (visible via `/quest`).
 
 | Item | Rarity | XP |
 |------|--------|-----|
@@ -143,12 +228,24 @@ Persistent across sessions. Unlocked once, shown once.
 | One-Liner | Bash command over 200 characters | "That's not a command, that's a novel." |
 | Overkill | Replace 500+ characters in one edit | "You could have just rewritten the file." |
 | Prestige Addict | Prestige 3 times | "You know this doesn't go on your resume, right?" |
+| Monster Hunter | Defeat 10 enemies | "The bugs fear you now." |
+| Exterminator | Defeat 50 enemies | "You don't fix bugs. You hunt them." |
+
+## Sound Effects
+
+Terminal bell (`\a`) plays on level-ups, boss fights, deaths, achievements, loot drops, and prestige events. Sound is on by default. To toggle, edit `~/.progress-quest/session-state.json` and set `"sound": false`.
 
 ## Death
 
 If your XP drops to 0 from a boss fight or cursed loot:
 
 ```
+    _____
+   /     \
+  | () () |
+   \  ^  /
+    |||||
+    |||||
 YOU DIED. Your code was collected by garbage collection. Respawning at 0 XP...
 ```
 
