@@ -28,7 +28,7 @@ claude plugin install /path/to/progress-quest
 Most tool calls show nothing (scarcity keeps it fun). But sometimes:
 
 ```
-Read earned 5 XP (45/100) | Lvl 1 Script Kiddie
+Read earned 5 XP (45/100) | Lvl 1 Just a Baby
 ```
 
 ```

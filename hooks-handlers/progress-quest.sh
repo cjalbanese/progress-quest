@@ -112,7 +112,7 @@ level_title() {
     esac
   elif [ "$prest" -eq 1 ]; then
     case $lvl in
-      1)  echo "Script Kiddie II: Electric Boogaloo" ;;
+      1)  echo "Just a Baby II: Electric Boogaloo" ;;
       2)  echo "Stack Overflower (With Flair)" ;;
       3)  echo "Ctrl+C Ctrl+V Grandmaster" ;;
       4)  echo "Senior Junior Dev (Now With Benefits)" ;;
@@ -125,7 +125,7 @@ level_title() {
     esac
   elif [ "$prest" -eq 2 ]; then
     case $lvl in
-      1)  echo "Script Kiddie III" ;;
+      1)  echo "Just a Baby III" ;;
       2)  echo "Eternal Stack Overflower" ;;
       3)  echo "The Paste Awakens" ;;
       4)  echo "Senior Junior Senior Dev" ;;
@@ -138,7 +138,7 @@ level_title() {
     esac
   elif [ "$prest" -eq 3 ]; then
     case $lvl in
-      1)  echo "Script Kiddie IV: A New Hope" ;;
+      1)  echo "Just a Baby IV: A New Hope" ;;
       2)  echo "Stack Overflower: Final Form" ;;
       3)  echo "Paste Beyond Spacetime" ;;
       4)  echo "Senior Junior Senior Junior Dev" ;;
@@ -151,7 +151,7 @@ level_title() {
     esac
   elif [ "$prest" -eq 4 ]; then
     case $lvl in
-      1)  echo "Script Kiddie V: The Kiddie Strikes Back" ;;
+      1)  echo "Just a Baby V: The Baby Strikes Back" ;;
       2)  echo "Stack Overflower: Reloaded" ;;
       3)  echo "Copy-Paste Has Achieved Consciousness" ;;
       4)  echo "Senior Junior Senior Junior Senior Dev" ;;
@@ -166,7 +166,7 @@ level_title() {
     # Prestige 5+
     local suffix=$(printf 'I%.0s' $(seq 1 $((prest+1))))
     case $lvl in
-      1)  echo "Script Kiddie $suffix" ;;
+      1)  echo "Just a Baby $suffix" ;;
       2)  echo "Stack Overflower $suffix" ;;
       3)  echo "The Paste Beyond Understanding" ;;
       4)  echo "It's Senior Juniors All The Way Down" ;;
