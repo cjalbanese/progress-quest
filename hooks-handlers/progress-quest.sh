@@ -915,6 +915,16 @@ echo "$STATE" | jq \
 # Save achievements
 echo "$ACHIEVEMENTS" > "$ACHIEVEMENTS_FILE"
 
+# --- ANSI color codes ---
+BOLD='\033[1m'
+DIM='\033[2m'
+MAGENTA='\033[35m'
+CYAN='\033[36m'
+YELLOW='\033[33m'
+GREEN='\033[32m'
+RED='\033[31m'
+RESET='\033[0m'
+
 # --- Build output message ---
 MSG=""
 
@@ -922,17 +932,17 @@ MSG=""
 if [ "$LEVEL_UP" = "true" ]; then
   NEXT_TITLE=$(level_title $NEW_LEVEL $PRESTIGE)
   LVL_ART=$(ascii_level_up)
-  MSG="${LVL_ART}
-LEVEL UP! You are now a Lvl $NEW_LEVEL $NEXT_TITLE!"
+  MSG="${BOLD}${GREEN}${LVL_ART}
+⚔  LEVEL UP! You are now a Lvl $NEW_LEVEL $NEXT_TITLE!${RESET}"
   SOUND_EVENT="levelup"
 elif [ -n "$PRESTIGE_MSG" ]; then
-  MSG="$PRESTIGE_MSG"
+  MSG="${BOLD}${MAGENTA}★  ${PRESTIGE_MSG}${RESET}"
 elif [ -n "$DEATH_MSG" ]; then
-  MSG="$DEATH_MSG"
+  MSG="${BOLD}${RED}${DEATH_MSG}${RESET}"
 elif [ -n "$ACHIEVEMENT_MSG" ]; then
-  MSG="$ACHIEVEMENT_MSG"
+  MSG="${BOLD}${YELLOW}🏆 ${ACHIEVEMENT_MSG}${RESET}"
 elif [ -n "$EVENT_MSG" ]; then
-  MSG="$EVENT_MSG"
+  MSG="${BOLD}${MAGENTA}⚡ ${EVENT_MSG}${RESET}"
 else
   # Standard XP message (~40% of the time, scarcity keeps it fun)
   if [ $((RANDOM % 100)) -lt 40 ]; then
@@ -940,7 +950,7 @@ else
     if [ -n "$CLASS" ]; then
       CLASS_SUFFIX=" [$CLASS]"
     fi
-    MSG="$TOOL_NAME earned ${TOTAL_EARNED} XP ($XP/$NEXT_THRESH) | Lvl $NEW_LEVEL $TITLE${CLASS_SUFFIX}"
+    MSG="${DIM}${CYAN}⟡  $TOOL_NAME earned ${TOTAL_EARNED} XP ($XP/$NEXT_THRESH) | Lvl $NEW_LEVEL $TITLE${CLASS_SUFFIX}${RESET}"
   fi
 fi
 
@@ -951,5 +961,5 @@ fi
 
 # Output
 if [ -n "$MSG" ]; then
-  jq -n --arg msg "$MSG" '{"systemMessage": $msg}'
+  jq -n --arg msg "$(printf '%b' "$MSG")" '{"systemMessage": $msg}'
 fi
