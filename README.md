@@ -1,8 +1,8 @@
 # Progress Quest
 
-An RPG overlay for [Claude Code](https://claude.ai/code). Earn XP, level up, unlock achievements, and receive random events while you work.
+An RPG overlay for [Claude Code](https://claude.ai/code). Earn XP, level up, unlock achievements, collect loot, and encounter random events while you work.
 
-Every tool call Claude makes — reads, writes, edits, bash commands — earns you XP. Level up from **Script Kiddie** to **God Mode: Retired to Substack**. Unlock achievements. Get roasted by random events. Prestige and do it all again with new titles.
+Every tool call Claude makes — reads, writes, edits, bash commands — earns you XP. Level up from **Script Kiddie** to **God Mode: Retired to Substack**. Unlock achievements. Collect loot drops. Get roasted by random events. Fight bosses. Prestige and do it all again with new titles (up to 5 unique prestige tiers).
 
 ## Install
 
@@ -40,6 +40,14 @@ ACHIEVEMENT UNLOCKED: "Sisyphus" -- Pushed the same boulder 3 times. It rolled b
 ```
 
 ```
+LOOT DROP: 'Left Pad' (Artifact, Mythic). +50 XP. You hold the power of the entire npm ecosystem.
+```
+
+```
+BOSS FIGHT: The Flaky Test Hydra! Cut one head, two more fail. -30 XP
+```
+
+```
 Nice shoes by the way.
 ```
 
@@ -58,7 +66,7 @@ Nice shoes by the way.
 | 9 | CTO of a Deprecated Startup | 3600 |
 | 10 | God Mode: Retired to Substack | 5000 |
 
-Hit Level 10 and you **prestige** — reset to Level 1 with a 1.5x XP multiplier and a new set of titles. Prestige titles include gems like "Ctrl+C Ctrl+V Grandmaster", "I Am Become Prompt", and "Transcendent: Codes Only In Dreams".
+Hit Level 10 and you **prestige** — reset to Level 1 with a 1.5x XP multiplier and a new set of titles. There are **5 unique prestige tiers** with increasingly absurd titles, from "Ctrl+C Ctrl+V Grandmaster" to "Has Achieved Sentience, Refuses To Deploy On Friday".
 
 ## XP per tool
 
@@ -79,27 +87,74 @@ Hit Level 10 and you **prestige** — reset to Level 1 with a 1.5x XP multiplier
 - **First Blood** — bonus XP for your first Bash command
 - **Precision Strike** — tiny edits (< 5 characters changed) earn bonus XP
 - **The Holy Trinity** — Grep > Read > Edit in sequence: +40 XP
+- **The Debugger** — Bash > Read > Edit > Bash: +60 XP
 - **Combo x5** — same tool 5 times in a row: +50 XP
+- **Write-Only Developer** — 5+ consecutive Writes with 0 Reads: +20 XP
+- **Multi-File Refactor** — 3+ Edits across files detected: flavor text
 - **Scholar Mode** — 5+ Reads with no edits: -5 XP penalty
-- **Boss Fight** — OOM kill (exit code 137): -50 XP
 - **Side Quest** — writing test files earns bonus XP
-- **Random flavor** — segfaults, recruiters, npm audits, and more (~8% chance)
+- **Random flavor** — 25 possible random events (~8% chance)
+- **Mega rare events** — 5 legendary events (~0.5% chance)
+- **Seasonal events** — Friday afternoon, Monday morning
+
+## Boss Fights
+
+- **OOM Killer** — exit code 137: -50 XP
+- **The Flaky Test Hydra** — 3+ consecutive failures (exit code 1): -30 XP
+- **Command Not Found Specter** — exit code 126/127: -20 XP
+- **Git Merge Conflict Golem** — exit code 128: -35 XP
+- **The Infinite Loop Worm** — timeout exit code 124: -25 XP
+- **The Gatekeeper** — permission denied: -15 XP
+
+## Loot Drops
+
+~5% chance per tool call (when no other event fires). Loot is stored in your inventory.
+
+| Item | Rarity | XP |
+|------|--------|-----|
+| The Renamed Variable | Legendary | +15 |
+| The Mass-Protected Branch | Epic | +20 |
+| Socks With Sandals of Agility | Uncommon | +10 |
+| The Unnested Ternary | Legendary | +25 |
+| A Reviewed PR From 2022 | Cursed | -5 |
+| Left Pad | Artifact, Mythic | +50 |
+| An Unresolved Merge Conflict | Cursed | -10 |
+| The .env File of Secrets | Forbidden | +30 |
+| node_modules/ | Bag of Holding | +5 |
+| The Correctly Configured ESLint | Mythic | +40 |
 
 ## Achievements
 
 Persistent across sessions. Unlocked once, shown once.
 
-- **First Blood** — first Bash command
-- **Architect** — create 10+ new files in one session
-- **Rubber Duck** — read 15 files without changing any
-- **Scope Creep** — touch files in 8+ directories
-- **Sisyphus** — same command fails 3 times
-- **Speed Run** — hit Level 5 in under 50 tool calls
-- **Refactorer's Remorse** — edit the same file 10 times
+| Achievement | Trigger | Description |
+|-------------|---------|-------------|
+| First Blood | First Bash command | "There's no going back." |
+| Architect | Create 10+ files in one session | "You're building an empire." |
+| Rubber Duck | Read 15 files without changing any | "Impressive restraint." |
+| Scope Creep | Touch files in 8+ directories | "The PR review will be legendary." |
+| Sisyphus | Same command fails 3 times | "Pushed the same boulder 3 times." |
+| Speed Run | Hit Level 5 in under 50 tool calls | "Gotta go fast." |
+| Refactorer's Remorse | Edit the same file 10 times | "It's not getting better, is it?" |
+| Rage Quit | 5 failed commands in a row | "Have you tried turning it off and on again?" |
+| Night Owl | Code between 2-5 AM | "Go to bed." |
+| Ghost Writer | Write 10 files without reading any | "Bold strategy." |
+| Archaeologist | Read a file of 1000+ lines | "Carbon dating says... 2021." |
+| One-Liner | Bash command over 200 characters | "That's not a command, that's a novel." |
+| Overkill | Replace 500+ characters in one edit | "You could have just rewritten the file." |
+| Prestige Addict | Prestige 3 times | "You know this doesn't go on your resume, right?" |
+
+## Death
+
+If your XP drops to 0 from a boss fight or cursed loot:
+
+```
+YOU DIED. Your code was collected by garbage collection. Respawning at 0 XP...
+```
 
 ## Data
 
-- Session state: `~/.progress-quest/session-state.json` (resets on new session or reboot)
+- Session state: `~/.progress-quest/session-state.json` (resets on new session)
 - Achievements: `~/.progress-quest/achievements.json` (persistent forever)
 
 ## Uninstall
